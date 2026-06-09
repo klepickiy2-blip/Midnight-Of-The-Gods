@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cglx31wkgxlit"]
+
+[ext_resource type="Script" uid="uid://i0aqjr06pcle" path="res://Scripts/encounter.gd" id="1_enc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enc"]
+size = Vector2(14, 14)
+
+[node name="Encounter" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_enc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_enc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.16, 0.16)

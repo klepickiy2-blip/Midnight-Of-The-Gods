@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b57i2sysybxh2"]
+
+[ext_resource type="Script" uid="uid://dcfcvmjl4sveb" path="res://Scripts/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dqtclxoev4f0o" path="res://icon.svg" id="2_onrkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i3pqv"]
+size = Vector2(8, 8)
+
+[node name="Player" type="CharacterBody2D" unique_id=1771713182]
+collision_mask = 0
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1777101025]
+shape = SubResource("RectangleShape2D_i3pqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1081115620]
+texture_filter = 1
+position = Vector2(-0.01999977, -0.01999977)
+scale = Vector2(0.1096875, 0.1096875)
+texture = ExtResource("2_onrkg")
+
+[node name="up" type="RayCast2D" parent="." unique_id=2078738444]
+position = Vector2(0, -8)
+target_position = Vector2(0, -8)
+hit_from_inside = true
+
+[node name="down" type="RayCast2D" parent="." unique_id=396726135]
+position = Vector2(0, 8)
+target_position = Vector2(0, 8)
+hit_from_inside = true
+
+[node name="left" type="RayCast2D" parent="." unique_id=435103244]
+position = Vector2(-8, 0)
+target_position = Vector2(-8, 0)
+hit_from_inside = true
+
+[node name="right" type="RayCast2D" parent="." unique_id=768664636]
+position = Vector2(8, 0)
+target_position = Vector2(8, 0)
+hit_from_inside = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=29782748]
+zoom = Vector2(2.5, 2.5)
+limit_enabled = false
+position_smoothing_enabled = true

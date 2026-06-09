@@ -1,0 +1,133 @@
+[gd_scene format=3 uid="uid://d1rwlseym5xk5"]
+
+[ext_resource type="Script" uid="uid://b64gxvtfomrqw" path="res://Scripts/battle.gd" id="1_oxf17"]
+[ext_resource type="Texture2D" uid="uid://bgp80jpiiupdo" path="res://Sprites/background.jpg" id="4_1otgo"]
+
+[node name="Battle" type="Node2D" unique_id=1502490963]
+script = ExtResource("1_oxf17")
+
+[node name="Hero" type="Node2D" parent="." unique_id=701479509]
+position = Vector2(307, 394)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hero" unique_id=253230082]
+scale = Vector2(0.22, 0.22)
+
+[node name="Enemy" type="Node2D" parent="." unique_id=879205146]
+position = Vector2(992, 545)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" unique_id=917006483]
+scale = Vector2(-0.22, 0.22)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=193634499]
+
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=544051096]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("4_1otgo")
+
+[node name="EnemyHPLabel" type="Label" parent="UI" unique_id=1492289647]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 903.0
+offset_top = 190.0
+offset_right = 1103.0
+offset_bottom = 213.0
+size_flags_horizontal = 0
+text = "Enemy "
+horizontal_alignment = 1
+
+[node name="EnemyHPBar" type="ProgressBar" parent="UI" unique_id=459160229]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(0, 24)
+offset_left = 865.0
+offset_top = 216.0
+offset_right = 1993.0
+offset_bottom = 240.0
+scale = Vector2(0.24000031, 1)
+size_flags_horizontal = 3
+max_value = 1.0
+show_percentage = false
+
+[node name="HeroHPLabel" type="Label" parent="UI" unique_id=1089845468]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 117.0
+offset_top = 191.0
+offset_right = 317.0
+offset_bottom = 214.0
+size_flags_horizontal = 0
+text = "Hero"
+horizontal_alignment = 1
+
+[node name="HeroMPLabel" type="Label" parent="UI" unique_id=1853579467]
+custom_minimum_size = Vector2(200, 0)
+offset_left = 119.0
+offset_top = 283.0
+offset_right = 319.0
+offset_bottom = 306.0
+size_flags_horizontal = 0
+text = "Hero"
+horizontal_alignment = 1
+
+[node name="HeroHPBar" type="ProgressBar" parent="UI" unique_id=888504344]
+custom_minimum_size = Vector2(0, 24)
+offset_left = 107.00001
+offset_top = 218.0
+offset_right = 1235.0
+offset_bottom = 242.0
+scale = Vector2(0.20000058, 1)
+size_flags_horizontal = 3
+max_value = 1.0
+show_percentage = false
+
+[node name="HeroMPBar" type="ProgressBar" parent="UI" unique_id=524077855]
+custom_minimum_size = Vector2(0, 24)
+offset_left = 107.0
+offset_top = 251.0
+offset_right = 1235.0
+offset_bottom = 275.0
+scale = Vector2(0.20000058, 1)
+size_flags_horizontal = 3
+max_value = 1.0
+show_percentage = false
+
+[node name="Log" type="RichTextLabel" parent="UI" unique_id=1899436664]
+custom_minimum_size = Vector2(480, 160)
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 1140.0
+offset_bottom = 167.0
+bbcode_enabled = true
+
+[node name="Hint" type="Label" parent="UI" unique_id=1175894123]
+offset_left = 12.0
+offset_top = 147.0
+offset_right = 1140.0
+offset_bottom = 170.0
+text = "Your turn"
+horizontal_alignment = 1
+
+[node name="SkillPanel" type="HBoxContainer" parent="UI" unique_id=1756828281]
+anchors_preset = -1
+anchor_top = 0.91600007
+anchor_right = 0.395
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -10.568054
+offset_right = -319.04
+offset_bottom = -1.0
+
+[node name="FirstSkillButton" type="TextureButton" parent="UI/SkillPanel" unique_id=1410421386]
+layout_mode = 2
+
+[node name="SecondSkillButton" type="TextureButton" parent="UI/SkillPanel" unique_id=1606259826]
+layout_mode = 2
+
+[node name="TurnEnd" type="Button" parent="UI" unique_id=284618502]
+offset_left = 531.0
+offset_top = 50.0
+offset_right = 621.0
+offset_bottom = 81.0
+scale = Vector2(1, 0.9153627)
+text = "END TURN"
+
+[connection signal="pressed" from="UI/TurnEnd" to="." method="_on_turn_end_pressed"]

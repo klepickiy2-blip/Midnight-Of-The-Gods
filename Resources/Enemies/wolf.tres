@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3 uid="uid://u5lw2vjr3tvn"]
+
+[ext_resource type="Script" uid="uid://ccujd7e4owt3o" path="res://Resources/enemy_resource.gd" id="1_wolf"]
+
+[resource]
+script = ExtResource("1_wolf")
+id = "wolf"
+enemy_name = "Wolf"
+base_hp = 59
+skill_id = "bite"
+damage = 20
+sprite_path = "res://Sprites/pngtree-real-gray-wolf-photo-png-image_11747736.png"
+map_icon = "res://Sprites/w.png"
+exp_reward = 5
+steps = 2
+detection_shape = "Square"
+detection_size = Vector2(16, 16)

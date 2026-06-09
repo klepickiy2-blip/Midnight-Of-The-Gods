@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=2 format=3 uid="uid://b15u17etxtlrd"]
+
+[ext_resource type="Script" uid="uid://bfqst1clyvc08" path="res://Resources/hero_resource.gd" id="1_warrior"]
+
+[resource]
+script = ExtResource("1_warrior")
+hero_class = "Warrior"
+base_hp = 100
+damage = 50
+skills = PackedStringArray("strike")
+sprite_path = "res://Sprites/Warrior-PNG-Images.png"
+map_icon = "res://icon.svg"

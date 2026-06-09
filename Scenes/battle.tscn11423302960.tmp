@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1rwlseym5xk5"]
+
+[ext_resource type="Script" uid="uid://cc20wpwq6xpqy" path="res://Scripts/battle_scene.gd" id="1_battle"]
+[ext_resource type="Resource" uid="uid://b15u17etxtlrd" path="res://Resources/Characters/warrior.tres" id="2_hero"]
+[ext_resource type="Resource" uid="uid://u5lw2vjr3tvn" path="res://Resources/Enemies/wolf.tres" id="3_enemy"]
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_battle")
+hero_data = ExtResource("2_hero")
+enemy_data = ExtResource("3_enemy")
+
+[node name="Hero" type="Node2D" parent="."]
+position = Vector2(103, 169)
+
+[node name="Sprite2D" type="Sprite2D" parent="Hero"]
+scale = Vector2(0.22, 0.22)
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(992, 189)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+scale = Vector2(-0.22, 0.22)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EnemyHPRow" type="HBoxContainer" parent="UI"]
+offset_left = 633.0
+offset_top = 34.0
+offset_right = 1133.0
+offset_bottom = 58.0
+theme_override_constants/separation = 8
+
+[node name="EnemyHPLabel" type="Label" parent="UI/EnemyHPRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Enemy —"
+
+[node name="EnemyHPBar" type="ProgressBar" parent="UI/EnemyHPRow"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+show_percentage = false
+
+[node name="HeroHPRow" type="HBoxContainer" parent="UI"]
+offset_left = 28.0
+offset_top = 28.0
+offset_right = 528.0
+offset_bottom = 52.0
+theme_override_constants/separation = 8
+
+[node name="HeroHPLabel" type="Label" parent="UI/HeroHPRow"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Hero —"
+
+[node name="HeroHPBar" type="ProgressBar" parent="UI/HeroHPRow"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+show_percentage = false
+
+[node name="Panel" type="PanelContainer" parent="UI"]
+offset_left = 298.0
+offset_top = 85.0
+offset_right = 822.0
+offset_bottom = 449.0
+
+[node name="Margin" type="MarginContainer" parent="UI/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="UI/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StrikeButton" type="Button" parent="UI/Panel/Margin/VBox"]
+layout_mode = 2
+disabled = true
+text = "Strike"
+
+[node name="Log" type="RichTextLabel" parent="UI/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="Hint" type="Label" parent="UI/Panel/Margin/VBox"]
+layout_mode = 2
+text = "Your turn — click Strike."

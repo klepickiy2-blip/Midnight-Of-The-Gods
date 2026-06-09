@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=4 uid="uid://cwnbecvjxr2cq"]
+
+[ext_resource type="Script" uid="uid://dpyfpvbtap5l6" path="res://Scripts/main_map.gd" id="1_main"]
+[ext_resource type="PackedScene" uid="uid://b57i2sysybxh2" path="res://Scenes/player.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://bs2ft0h5lbt70" path="res://Scenes/tile_map_layer.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bk0200u2w4mj6" path="res://Scenes/enemy_encounter.tscn" id="4_jjvhh"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("2_bo1nx")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAA=")
+
+[node name="Player" parent="." instance=ExtResource("2_8gbba")]
+position = Vector2(8, 8)
+collision_mask = 1
+
+[node name="encounter_2" parent="." instance=ExtResource("4_jjvhh")]
+position = Vector2(40, 8)
+
+[node name="encounter_3" parent="." instance=ExtResource("4_jjvhh")]
+position = Vector2(40, 40)
