@@ -24,24 +24,28 @@ func _input(event: InputEvent) -> void:
 					GameFlow.player_move_2 = false
 					GameFlow.enemy_turn.emit()
 					TimerManager.current_time += TimerManager.step_normal_time
+					TimerManager.check_timer()
 					print(TimerManager.current_time)
 				elif Input.is_action_just_pressed("ui_down") or Input.is_physical_key_pressed(KEY_S):
 					_move(Vector2.DOWN)
 					GameFlow.player_move_2 = false
 					GameFlow.enemy_turn.emit()
 					TimerManager.current_time += TimerManager.step_normal_time
+					TimerManager.check_timer()
 					print(TimerManager.current_time)
 				elif Input.is_action_just_pressed("ui_left") or Input.is_physical_key_pressed(KEY_A):
 					_move(Vector2.LEFT)
 					GameFlow.player_move_2 = false
 					GameFlow.enemy_turn.emit()
 					TimerManager.current_time += TimerManager.step_normal_time
+					TimerManager.check_timer()
 					print(TimerManager.current_time)
 				elif Input.is_action_just_pressed("ui_right") or Input.is_physical_key_pressed(KEY_D):
 					_move(Vector2.RIGHT)
 					GameFlow.player_move_2 = false
 					GameFlow.enemy_turn.emit()
 					TimerManager.current_time += TimerManager.step_normal_time
+					TimerManager.check_timer()
 					print(TimerManager.current_time) 
 			else:
 				pass
