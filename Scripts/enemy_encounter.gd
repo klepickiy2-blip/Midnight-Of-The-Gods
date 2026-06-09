@@ -65,8 +65,8 @@ func on_enemy_turn():
 	if $PlayerDetection.hunt:
 		on_the_hunt()
 	else:
-		neutral_patrol()
-
+		neutral_patrol() 
+	pass
 
 func _move (dir: Vector2):		
 	global_position += dir * Vector2(16,16)
@@ -122,9 +122,13 @@ func neutral_patrol():
 		going_there = true
 		going_back_again = false
 
-	if going_there: 
+	if going_there:
+
 		await get_tree().create_timer(0.5).timeout
 		for i in enemy_data.neutral_steps:
+			if $PlayerDetection.hunt:
+				on_the_hunt()
+				return
 			var possible_directions = {
 			'up':  patrol_point_1 - (global_position + vertical),
 			'down': patrol_point_1 - (global_position - vertical),

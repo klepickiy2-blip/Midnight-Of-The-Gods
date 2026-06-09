@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk0200u2w4mj6"]
+[gd_scene format=3 uid="uid://bk0200u2w4mj6"]
 
 [ext_resource type="Script" uid="uid://cpjtgfvkk7epc" path="res://Scripts/enemy_encounter.gd" id="1_h720o"]
 [ext_resource type="Script" uid="uid://clxwyo5785cmf" path="res://Scripts/player_detection.gd" id="2_kqwn0"]
@@ -10,32 +10,32 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqwn0"]
 size = Vector2(40, 40)
 
-[node name="EnemyEncounter" type="Area2D"]
+[node name="EnemyEncounter" type="Area2D" unique_id=1442501190]
 collision_layer = 0
 script = ExtResource("1_h720o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1968707661]
 shape = SubResource("RectangleShape2D_psjwm")
 
-[node name="PlayerDetection" type="Area2D" parent="."]
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=1608295954]
 collision_layer = 0
 script = ExtResource("2_kqwn0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=424586418]
 shape = SubResource("RectangleShape2D_kqwn0")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=31904733]
 texture = ExtResource("3_k8f17")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1112145844]
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=40522274]
 
-[node name="RayCast2D2" type="RayCast2D" parent="."]
+[node name="RayCast2D2" type="RayCast2D" parent="." unique_id=716239804]
 target_position = Vector2(50, 0)
 
-[node name="RayCast2D3" type="RayCast2D" parent="."]
+[node name="RayCast2D3" type="RayCast2D" parent="." unique_id=2110085474]
 target_position = Vector2(0, -50)
 
-[node name="RayCast2D4" type="RayCast2D" parent="."]
+[node name="RayCast2D4" type="RayCast2D" parent="." unique_id=496872142]
 target_position = Vector2(-50, 0)
