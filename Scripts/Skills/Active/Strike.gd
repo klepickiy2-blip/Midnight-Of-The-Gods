@@ -15,8 +15,7 @@ func activate():
 		return
 	if cost > BattleManager.player_mp_temp:
 		return
-	BattleManager.enemy_hp_temp -= number
-	print(BattleManager.enemy_hp)
+	BattleManager.enemy_hp_temp -= number + GameFlow.player_damage
 	BattleManager.player_mp_temp -= cost
 	cooldown_remaining = cooldown
 	BattleManager.register(self)

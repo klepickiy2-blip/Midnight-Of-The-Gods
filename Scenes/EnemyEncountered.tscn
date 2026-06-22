@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bk0200u2w4mj6"]
 
-[ext_resource type="Script" uid="uid://cpjtgfvkk7epc" path="res://Scripts/enemy_encounter.gd" id="1_h720o"]
-[ext_resource type="Script" uid="uid://clxwyo5785cmf" path="res://Scripts/player_detection.gd" id="2_kqwn0"]
+[ext_resource type="Script" uid="uid://cpjtgfvkk7epc" path="res://Scripts/EnemyEncounter.gd" id="1_h720o"]
+[ext_resource type="Script" uid="uid://clxwyo5785cmf" path="res://Scripts/PlayerDetection.gd" id="2_kqwn0"]
 [ext_resource type="Texture2D" uid="uid://domqk1csdvdja" path="res://Sprites/red_zone.png" id="3_k8f17"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_psjwm"]

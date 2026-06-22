@@ -1,6 +1,6 @@
 extends Node
 
-const _ENEMY_SCRIPT_TAIL := "enemy_resource.gd"
+const _ENEMY_SCRIPT_TAIL := "EnemyResource.gd"
 const _HEADER_BYTES := 4096
 
 

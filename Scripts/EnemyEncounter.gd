@@ -2,7 +2,7 @@ extends Area2D
 class_name enemy_encounter
 
 var enemy_data: Resource 
-var battle = preload("res://Scenes/battle.tscn")
+var battle = preload("res://Scenes/Battle.tscn")
 
 var enemy_hp: int
 var was_defeated: bool = false

@@ -8,7 +8,7 @@ var temp_hp: int
 @export var damage: int = 0
 @export var sprite_path: String = ""
 @export var map_icon: String = "" 
-@export var exp_reward: int = 0
+@export var xp_reward: int = 0
 
 @export_group ('Global map')
 @export var steps: int = 0

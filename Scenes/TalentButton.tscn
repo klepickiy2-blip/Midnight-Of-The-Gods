@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dn8jff1fyq4c7"]
+
+[ext_resource type="Texture2D" uid="uid://dqtclxoev4f0o" path="res://icon.svg" id="1_ueit2"]
+[ext_resource type="Script" uid="uid://bdbicmxlhw2k2" path="res://Scripts/TalentButton.gd" id="2_344eo"]
+
+[node name="SkillButton" type="TextureButton" unique_id=2045912342]
+offset_right = 40.0
+offset_bottom = 40.0
+toggle_mode = true
+texture_normal = ExtResource("1_ueit2")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_344eo")
+
+[node name="Panel" type="Panel" parent="." unique_id=1954433413]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=183732202]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=626712823]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "0/3"
+horizontal_alignment = 2
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1885273869]
+top_level = true
+z_index = -1
+width = 3.0
+default_color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

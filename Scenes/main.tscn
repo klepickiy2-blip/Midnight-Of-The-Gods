@@ -1,19 +1,24 @@
 [gd_scene format=4 uid="uid://cwnbecvjxr2cq"]
 
-[ext_resource type="Script" uid="uid://dpyfpvbtap5l6" path="res://Scripts/main_map.gd" id="1_main"]
-[ext_resource type="PackedScene" uid="uid://b57i2sysybxh2" path="res://Scenes/player.tscn" id="2_8gbba"]
-[ext_resource type="PackedScene" uid="uid://bs2ft0h5lbt70" path="res://Scenes/tile_map_layer.tscn" id="2_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://bk0200u2w4mj6" path="res://Scenes/enemy_encounter.tscn" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://dpyfpvbtap5l6" path="res://Scripts/MainMap.gd" id="1_pbw6q"]
+[ext_resource type="PackedScene" uid="uid://bs2ft0h5lbt70" path="res://Scenes/TileMap.tscn" id="2_v1gob"]
+[ext_resource type="PackedScene" uid="uid://b57i2sysybxh2" path="res://Scenes/Player.tscn" id="3_jw32o"]
+[ext_resource type="PackedScene" uid="uid://bk0200u2w4mj6" path="res://Scenes/EnemyEncountered.tscn" id="4_50glp"]
+[ext_resource type="PackedScene" uid="uid://ctp484etp8wcn" path="res://Scenes/TalentTree.tscn" id="5_vy5pj"]
 
 [node name="Main" type="Node2D" unique_id=354822622]
-script = ExtResource("1_main")
+script = ExtResource("1_pbw6q")
 
-[node name="TileMapLayer" parent="." unique_id=1151422064 instance=ExtResource("2_bo1nx")]
+[node name="TileMapLayer" parent="." unique_id=1151422064 instance=ExtResource("2_v1gob")]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAAAAAAAAAAAAAA=")
 
-[node name="Player" parent="." unique_id=851211704 instance=ExtResource("2_8gbba")]
+[node name="Player" parent="." unique_id=851211704 instance=ExtResource("3_jw32o")]
 position = Vector2(-48, 0)
 collision_mask = 1
 
-[node name="EnemyEncounter" parent="." unique_id=1874196979 instance=ExtResource("4_jjvhh")]
+[node name="EnemyEncounter" parent="." unique_id=1874196979 instance=ExtResource("4_50glp")]
 position = Vector2(-32, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=508059999]
+
+[node name="TalentTree" parent="CanvasLayer" unique_id=935865253 instance=ExtResource("5_vy5pj")]

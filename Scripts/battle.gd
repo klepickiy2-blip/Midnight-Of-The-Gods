@@ -4,6 +4,7 @@ extends Node2D
 ## Which enemy this encounter uses — HP, damage, skill, sprite all come from this resource.
 @export var enemy_data: Resource
 @export var first_data: Resource
+@onready var skill_panel: HBoxContainer = $UI/SkillPanel
 
 @onready var _hero_sprite: Sprite2D = $Hero/Sprite2D
 @onready var _enemy_sprite: Sprite2D = $Enemy/Sprite2D
@@ -17,10 +18,15 @@ extends Node2D
 @onready var _hero_mp_bar: ProgressBar = $UI/HeroMPBar
 @onready var _log: RichTextLabel = $UI/Log
 @onready var _hint: Label = $UI/Hint
-@onready var first_skill
-@onready var second_skill
-@onready var third_skill
-@onready var fourth_skill
+
+#SKILLS MECHANICS AND UI
+@onready var skills: Array = []
+@onready var skill_buttons: Array = []
+@export var skill_container: Container
+@export var skill_button_scene: PackedScene
+
+
+
 var skill_target
 var _player_turn: bool = true
 var _battle_over: bool = false
@@ -32,9 +38,7 @@ const _BITE := "bite"
 var dmg: int
 
 func _ready() -> void:
-
-	first_skill_button.pressed.connect(_on_first_pressed)
-	second_skill_button.pressed.connect(_on_second_pressed)
+	load_skills()
 	if GameFlow.pending_enemy != null:
 		enemy_data = GameFlow.pending_enemy
 		GameFlow.pending_enemy = null
@@ -74,62 +78,65 @@ func _begin_battle() -> void:
 	_hint.text = "Your turn!"
 	first_skill_button.disabled = false
 func load_skills() -> void:
-	if GameFlow.known_skills.size () == 1:
-		var first_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[0] + ".gd")
-		first_skill = first_skill_get_path.new()
-		first_skill_button.texture_normal = first_skill.texture_normal
-		print("1 skill")
-	elif GameFlow.known_skills.size() == 2:
-		var first_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[0] + ".gd")
-		first_skill = first_skill_get_path.new()
-		first_skill_button.texture_normal = first_skill.texture_normal
-		var second_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[1] + ".gd")
-		second_skill = second_skill_get_path.new()
-		second_skill_button.texture_normal = second_skill.texture_normal
-		print("2 skills")
-	elif GameFlow.known_skills.size() == 3:
-		var first_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[0] + ".gd")
-		first_skill = first_skill_get_path.new()
-		var second_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[1] + ".gd")
-		second_skill = second_skill_get_path.new()
-		var third_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[2] + ".gd")
-		third_skill = third_skill_get_path.new()
-		print("3 skills")
-	elif GameFlow.known_skills.size() == 4:
-		var first_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[0] + ".gd")
-		first_skill = first_skill_get_path.new()
-		var second_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[1] + ".gd")
-		second_skill = second_skill_get_path.new()
-		var third_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[2] + ".gd")
-		third_skill = third_skill_get_path.new()
-		var fourth_skill_get_path = load("res://Resources/Skills/" + GameFlow.known_skills[3] + ".gd")
-		fourth_skill = fourth_skill_get_path.new()
-		print("4 skills")
+	skills.clear()
+	
+	for skill_name in GameFlow.known_skills:
+		var skill_path = "res://Scripts/Skills/Active/" + skill_name + ".gd"
+		if ResourceLoader.exists (skill_path):
+			var skill_script = load(skill_path)
+			var skill_instance = skill_script.new()
+			skills.append(skill_instance)
+	
+	create_skill_buttons()
+	
+	
+func create_skill_buttons():
+	for button in skill_buttons:
+		button.queue_free()
+	skill_buttons.clear()
+	
+	for i in range(skills.size()):
+		var button = skill_button_scene.instantiate()
+		skill_container.add_child(button)
+		
+		button.texture_normal = skills[i].texture_normal
+		button.pressed.connect(_on_skill_pressed.bind(i))
+		
+		if skills[i].cooldown_remaining > 0:
+			button.disabled = true
+			
+		skill_buttons.append(button)
+
+
+func _on_skill_pressed(index: int):
+	var skill = skills[index]
+	
+	if skill.cooldown_remaining > 0:
+		return	
+	skill.activate()
+	_refresh_ui()
+	
+	if BattleManager.enemy_hp_temp <= 0:
+		_finish_battle(true)
+		return
+	
+	update_skill_buttons()
+	
+func update_skill_buttons():
+	for i in range(skill_buttons.size()):
+		if skills[i].cooldown_remaining > 0:
+			skill_buttons[i].disabled = true
+		
+		else:
+			skill_buttons[i].disabled = false
+	
 		
 func set_target(target: String):
 	skill_target = target
 	print(target)
 	return
 			
-func _on_first_pressed() -> void:
-	if first_skill.cooldown_remaining > 0:
-		pass
-	else:
-		first_skill.activate()
-		_refresh_ui()
-		if BattleManager.enemy_hp_temp <= 0:
-			_finish_battle(true)
-			return
 
-func _on_second_pressed() -> void:
-	if second_skill.cooldown_remaining > 0:
-		pass
-	else:
-		second_skill.activate()
-		if BattleManager.enemy_hp <= 0:
-			_finish_battle(true)
-			return
-		_refresh_ui()
 		
 
 func _enemy_attack() -> void:
@@ -161,11 +168,11 @@ func _finish_battle(player_won: bool) -> void:
 		_log.append_text("[color=green]You win.[/color]\n")
 		var _enemy_max_xp = maxi(_res_int(enemy_data, "exp_reward", 1), 1)
 		_enemy_xp = _enemy_max_xp
-		GameFlow.player_xp += _enemy_xp
+		GameFlow.gain_xp(_enemy_xp)
 		GameFlow.player_not_in_battle = true
+		queue_free()
 	else:
 		_log.append_text("[color=red]You were defeated.[/color]\n")
-	if player_won:
 		queue_free()
 
 func _refresh_ui() -> void:

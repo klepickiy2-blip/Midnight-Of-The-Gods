@@ -6,4 +6,10 @@ extends Node2D
 @export var extra_enemy_scan_folders: PackedStringArray = PackedStringArray()
 
 @onready var enemy = get_node("EnemyEncounter")
-	
+@onready var UI_talents = preload("res://Scenes/TalentTree.tscn")
+
+		
+
+
+func _on_button_pressed() -> void:
+	UI_talents.instantiate()

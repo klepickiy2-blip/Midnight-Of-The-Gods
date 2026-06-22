@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://d1rwlseym5xk5"]
 
-[ext_resource type="Script" uid="uid://b64gxvtfomrqw" path="res://Scripts/battle.gd" id="1_oxf17"]
+[ext_resource type="Script" uid="uid://b64gxvtfomrqw" path="res://Scripts/Battle.gd" id="1_oxf17"]
+[ext_resource type="PackedScene" uid="uid://wrnsswui8qlx" path="res://Scenes/SkillButton.tscn" id="2_2h7oj"]
 [ext_resource type="Texture2D" uid="uid://bgp80jpiiupdo" path="res://Sprites/background.jpg" id="4_1otgo"]
 
-[node name="Battle" type="Node2D" unique_id=1502490963]
+[node name="Battle" type="Node2D" unique_id=1502490963 node_paths=PackedStringArray("skill_container")]
 script = ExtResource("1_oxf17")
+skill_container = NodePath("UI/SkillContainer")
+skill_button_scene = ExtResource("2_2h7oj")
 
 [node name="Hero" type="Node2D" parent="." unique_id=701479509]
 position = Vector2(307, 394)
@@ -106,22 +109,6 @@ offset_bottom = 170.0
 text = "Your turn"
 horizontal_alignment = 1
 
-[node name="SkillPanel" type="HBoxContainer" parent="UI" unique_id=1756828281]
-anchors_preset = -1
-anchor_top = 0.91600007
-anchor_right = 0.395
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -10.568054
-offset_right = -319.04
-offset_bottom = -1.0
-
-[node name="FirstSkillButton" type="TextureButton" parent="UI/SkillPanel" unique_id=1410421386]
-layout_mode = 2
-
-[node name="SecondSkillButton" type="TextureButton" parent="UI/SkillPanel" unique_id=1606259826]
-layout_mode = 2
-
 [node name="TurnEnd" type="Button" parent="UI" unique_id=284618502]
 offset_left = 531.0
 offset_top = 50.0
@@ -129,5 +116,15 @@ offset_right = 621.0
 offset_bottom = 81.0
 scale = Vector2(1, 0.9153627)
 text = "END TURN"
+
+[node name="SkillContainer" type="GridContainer" parent="UI" unique_id=420315483]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
 [connection signal="pressed" from="UI/TurnEnd" to="." method="_on_turn_end_pressed"]

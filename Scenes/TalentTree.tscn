@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://ctp484etp8wcn"]
+
+[ext_resource type="Script" uid="uid://hgbdixrbn3vx" path="res://Scripts/TalentTree.gd" id="1_rykea"]
+[ext_resource type="PackedScene" uid="uid://dn8jff1fyq4c7" path="res://Scenes/TalentButton.tscn" id="2_sjwys"]
+
+[node name="TalentTree" type="Control" unique_id=935865253]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -24.0
+offset_right = -40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rykea")
+
+[node name="Panel" type="Panel" parent="." unique_id=57762994]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkillButton" parent="." unique_id=2045912342 instance=ExtResource("2_sjwys")]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 528.0
+offset_right = 592.0
+offset_bottom = 568.0
+type = 1
+Name = "Heal"
+MaxLevel = 1
+
+[node name="SkillButton" parent="SkillButton" unique_id=1571097230 instance=ExtResource("2_sjwys")]
+layout_mode = 0
+offset_left = -83.0
+offset_top = -71.0
+offset_right = -43.0
+offset_bottom = -31.0
+disabled = true
+Name = "AttackBonus"
+MaxLevel = 3
+
+[node name="SkillButton2" parent="SkillButton" unique_id=1641034174 instance=ExtResource("2_sjwys")]
+layout_mode = 0
+offset_left = 77.0
+offset_top = -71.0
+offset_right = 117.0
+offset_bottom = -31.0
+disabled = true
+Name = "AttackBonus"
+MaxLevel = 3
+
+[node name="SkillButton" parent="SkillButton/SkillButton2" unique_id=2104924144 instance=ExtResource("2_sjwys")]
+layout_mode = 0
+offset_left = -56.0
+offset_top = -72.0
+offset_right = -16.0
+offset_bottom = -32.0
+disabled = true
+Name = "AttackBonus"
+MaxLevel = 3
+
+[node name="SkillButton2" parent="SkillButton/SkillButton2" unique_id=1927404828 instance=ExtResource("2_sjwys")]
+layout_mode = 0
+offset_left = 56.0
+offset_top = -72.0
+offset_right = 96.0
+offset_bottom = -32.0
+disabled = true
+Name = "AttackBonus"
+MaxLevel = 3
