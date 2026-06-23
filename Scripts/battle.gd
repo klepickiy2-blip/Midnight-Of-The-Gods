@@ -4,7 +4,7 @@ extends Node2D
 ## Which enemy this encounter uses — HP, damage, skill, sprite all come from this resource.
 @export var enemy_data: Resource
 @export var first_data: Resource
-@onready var skill_panel: HBoxContainer = $UI/SkillPanel
+
 
 @onready var _hero_sprite: Sprite2D = $Hero/Sprite2D
 @onready var _enemy_sprite: Sprite2D = $Enemy/Sprite2D
@@ -124,9 +124,9 @@ func _on_skill_pressed(index: int):
 	
 func update_skill_buttons():
 	for i in range(skill_buttons.size()):
+		print (skills[i].name + ' cooldown: ' + str(skills[i].cooldown_remaining))
 		if skills[i].cooldown_remaining > 0:
 			skill_buttons[i].disabled = true
-		
 		else:
 			skill_buttons[i].disabled = false
 	
@@ -156,7 +156,7 @@ func _enemy_attack() -> void:
 
 	_player_turn = true
 	_hint.text = 'Your turn!'
-	first_skill_button.disabled = false
+	
 
 
 func _finish_battle(player_won: bool) -> void:
@@ -236,8 +236,8 @@ func set_ui():
 func _on_turn_end_pressed() -> void:
 		_busy = true
 		_player_turn = false
-		first_skill_button.disabled = true
 		BattleManager.process_turn_end()
+		update_skill_buttons()
 		_hint.text = "%s is acting…" % enemy_data.enemy_name
 		await get_tree().create_timer(0.7).timeout
 		_enemy_attack()

@@ -1,6 +1,7 @@
 extends Resource
 class_name Skill
 var target: String
+var name: String
 var number: int
 var texture_normal: Texture2D
 var cost: int

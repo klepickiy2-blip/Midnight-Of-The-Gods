@@ -3,6 +3,7 @@ extends Skill
 
 func _init() -> void:
 	target = 'Enemy'
+	name = 'Strike'
 	number = 5
 	texture_normal = preload("res://Sprites/strike.png")
 	cost = 5
